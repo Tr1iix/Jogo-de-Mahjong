@@ -16,7 +16,7 @@ python3 -m http.server 8000
 
 Depois é só abrir http://localhost:8000.
 
-No GitHub Pages funciona sem configuração extra: Settings > Pages > branch `main`, pasta `/ (root)`.
+No GitHub Pages funciona sem configuração extra:https://tr1iix.github.io/Jogo-de-Mahjong/
 
 ## Estrutura
 
