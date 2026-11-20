@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>American Mah Jongg</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-group">
+      <h1 class="topbar-title">American Mah Jongg</h1>
+      <div class="mode-group" id="mode-group">
+        <span class="mode-label">Modo:</span>
+        <button class="mode-btn active" data-mode="tutorial">Tutorial</button>
+        <button class="mode-btn" data-mode="easy">Fácil</button>
+        <button class="mode-btn" data-mode="normal">Normal</button>
+        <button class="mode-btn" data-mode="hard">Difícil</button>
+      </div>
+    </div>
+    <div class="topbar-group">
+      <label class="check-label" title="Expõe as flores automaticamente (desligado no tutorial)">
+        <input type="checkbox" id="chk-auto-flowers" checked> Expor flores sozinho
+      </label>
+      <button class="btn btn-secondary" id="btn-rules">Regras</button>
+      <button class="btn btn-secondary" id="btn-toggle-bots">Mostrar mãos dos bots</button>
+      <button class="btn btn-primary" id="btn-deal">Nova partida</button>
+    </div>
+  </header>
+
+  <section class="tutorial-box hidden" id="tutorial-box">
+    <div class="tutorial-content">
+      <span class="tutorial-badge" id="tutorial-badge"></span>
+      <div class="tutorial-progress"><div id="tutorial-bar"></div></div>
+      <div class="tutorial-title" id="tutorial-title"></div>
+      <div class="tutorial-desc" id="tutorial-desc"></div>
+      <div class="tutorial-extra" id="tutorial-extra"></div>
+    </div>
+    <button class="btn btn-guide" id="btn-tutorial-next">Próximo</button>
+  </section>
+
+  <main class="table">
+    <section class="seat seat-north" id="seat-2">
+      <div class="seat-label">
+        <span>Bot Norte</span><span class="wind-tag">NORTE</span><span class="meta" id="meta-2"></span>
+      </div>
+      <div class="hands-wrapper">
+        <div class="melds" id="melds-2"></div>
+        <div class="hand backs-only" id="hand-2"></div>
+      </div>
+    </section>
+
+    <section class="seat seat-west" id="seat-3">
+      <div class="seat-label">
+        <span>Bot Oeste</span><span class="wind-tag">OESTE</span><span class="meta" id="meta-3"></span>
+      </div>
+      <div class="hands-wrapper">
+        <div class="melds" id="melds-3"></div>
+        <div class="hand backs-only" id="hand-3"></div>
+      </div>
+    </section>
+
+    <div class="center-area">
+      <div class="river river-north" id="river-2"></div>
+      <div class="river river-west" id="river-3"></div>
+
+      <div class="center-hub">
+        <div class="hub-title">Muro</div>
+        <div class="hub-count" id="wall-count">0</div>
+        <div class="hub-sub">peças restantes</div>
+        <div class="hub-turn" id="turn-badge"></div>
+      </div>
+
+      <div class="river river-east" id="river-1"></div>
+      <div class="river river-south" id="river-0"></div>
+
+      <div class="win-banner hidden" id="win-banner">
+        <div class="win-title" id="win-title"></div>
+        <div class="win-desc" id="win-desc"></div>
+        <div class="win-hand" id="win-hand"></div>
+        <button class="btn btn-primary" id="btn-play-again">Nova partida</button>
+      </div>
+    </div>
+
+    <section class="seat seat-east" id="seat-1">
+      <div class="seat-label">
+        <span>Bot Leste</span><span class="wind-tag">LESTE</span><span class="meta" id="meta-1"></span>
+      </div>
+      <div class="hands-wrapper">
+        <div class="melds" id="melds-1"></div>
+        <div class="hand backs-only" id="hand-1"></div>
+      </div>
+    </section>
+
+    <section class="seat seat-south" id="seat-0">
+      <div class="action-bar hidden" id="claim-bar">
+        <button class="btn btn-win" id="btn-claim-win">Mah Jongg!</button>
+        <button class="btn btn-call" id="btn-claim-pon">Chamar Pon</button>
+        <button class="btn btn-call" id="btn-claim-kong">Chamar Kong</button>
+        <button class="btn btn-call" id="btn-claim-quint">Chamar Quint</button>
+        <button class="btn btn-secondary" id="btn-pass-claim">Passar</button>
+      </div>
+      <div class="action-bar hidden" id="turn-actions-bar">
+        <button class="btn btn-win" id="btn-mahjong">Mah Jongg!</button>
+        <button class="btn btn-flower" id="btn-expose-flowers">Expor flores</button>
+        <button class="btn btn-joker" id="btn-swap-joker">Trocar coringa</button>
+        <button class="btn btn-promote" id="btn-promote-meld">Promover meld</button>
+      </div>
+      <div class="turn-hint" id="south-hint"></div>
+      <div class="seat-label">
+        <span>Você</span><span class="wind-tag">SUL</span><span class="meta" id="meta-0"></span>
+      </div>
+      <div class="south-tools">
+        <button class="btn btn-small btn-secondary" id="btn-sort">Ordenar mão</button>
+        <button class="btn btn-small btn-hint" id="btn-hint">Dica</button>
+      </div>
+      <div class="hands-wrapper">
+        <div class="melds" id="melds-0"></div>
+        <div class="hand" id="hand-0"></div>
+      </div>
+    </section>
+  </main>
+
+  <section class="log-panel">
+    <div class="log-head">
+      <h2 class="log-title">Registro da partida</h2>
+      <span class="stats">
+        <span id="stats-text"></span>
+        <button class="btn btn-small btn-secondary" id="btn-reset-stats">Zerar placar</button>
+      </span>
+    </div>
+    <ul class="log-list" id="log-list"></ul>
+  </section>
+
+  <div class="modal-backdrop hidden" id="rules-modal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h2 class="modal-title">Regras</h2>
+        <button class="btn btn-secondary" id="btn-close-rules">Fechar</button>
+      </div>
+      <ul class="rules-list">
+        <li><strong>Objetivo:</strong> montar uma mão de 14 peças úteis (flores expostas não contam) e declarar Mah Jongg.</li>
+        <li><strong>Padrões aceitos:</strong> (a) grupos de 3, 4 ou 5 peças iguais, com coringas, mais 1 par natural; (b) 7 pares, só sem chamadas; (c) sequências de 3 peças do mesmo naipe (ex.: 1-2-3 de Caracteres) mais grupos e par.</li>
+        <li><strong>Sua vez:</strong> você compra 1 peça do muro (automático) e descarta 1 clicando nela. A peça recém-comprada fica destacada.</li>
+        <li><strong>Flores:</strong> são bônus. Exponha para comprar uma peça de reposição, ou deixe ligada a opção "Expor flores sozinho".</li>
+        <li><strong>Coringas:</strong> valem qualquer peça em grupos e sequências, nunca no par. Se houver um coringa num meld aberto e você tiver a peça real, use "Trocar coringa".</li>
+        <li><strong>Chamadas:</strong> quando um bot descarta uma peça que completa um grupo seu, aparece Pon (3 iguais), Kong (4) ou Quint (5). A peça chamada fica exposta numa meld, e depois você descarta ou fecha a mão.</li>
+        <li><strong>Mah Jongg no descarte:</strong> se o descarte de um bot completa sua mão de 14, o botão "Mah Jongg!" aparece junto com as chamadas.</li>
+        <li><strong>Promover meld:</strong> um Pon vira Kong (ou um Kong vira Quint) se você tiver mais uma peça igual, ou um coringa, na mão.</li>
+        <li><strong>Dificuldade:</strong> no Fácil os bots descartam quase ao acaso e chamam pouco; no Normal descartam peças soltas; no Difícil avaliam a utilidade de cada peça, chamam sempre e fecham por descarte.</li>
+        <li><strong>Nota:</strong> esta é uma versão simplificada. No American Mah Jongg oficial, a mão vencedora precisa seguir uma combinação do cartão anual da NMJL; aqui as mãos são validadas por padrões gerais.</li>
+      </ul>
+    </div>
+  </div>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

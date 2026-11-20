@@ -1,0 +1,11 @@
+{
+  "name": "american-mahjong",
+  "version": "1.0.0",
+  "description": "Mah Jongg americano simplificado, jogável no navegador",
+  "type": "module",
+  "scripts": {
+    "start": "python3 -m http.server 8000",
+    "test": "node tests/simulate.js"
+  },
+  "license": "MIT"
+}
